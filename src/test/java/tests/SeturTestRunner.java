@@ -14,7 +14,7 @@ public class SeturTestRunner {
         seturTest.urlControl();
         seturTest.isdefaultTabControl();
         seturTest.readCsvFile("Antalya");
-        seturTest.chooseDate("Haziran",15);
+        seturTest.chooseDate(Mounths.EYLUL, 29);
     }
 
 

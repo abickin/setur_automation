@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -91,13 +92,19 @@ public class SeturTest {
         return cityToSearch;
     }
 
-    public void chooseDate(String mounth, int dayOfMounth) throws InterruptedException {
+    public void chooseDate(Mounths mounth, int dayOfMounth) throws InterruptedException {
 
+        if (mounth == null) {
+            System.out.println("AY DEĞERİ BOŞ OLAMAZ");
+            throw new RuntimeException();
+        }
+
+        int monthValueAsInt = Mounths.getMonthOfYear(mounth.getNameOfMonth());
         driver.findElement(By.xpath(VACATION_DATE_BOX)).click();
         WebElement tableElement = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[3]/div[3]/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div[2]/div/div/div/div/div/div[2]/div[1]/button[2]"));
-        int monthValue = LocalDate.now().getMonthValue();
+        int currentMonthValue = LocalDate.now().getMonthValue();
 
-        for (int i = 0; i < 6 - monthValue; i++) {
+        for (int i = 0; i < monthValueAsInt - currentMonthValue; i++) {
             Thread.sleep(1000);
             tableElement.click();
         }
@@ -119,7 +126,7 @@ public class SeturTest {
                 }
             }
         }
-        SeturCalendar setCalendar = calendarMap.get(15);
+        SeturCalendar setCalendar = calendarMap.get(dayOfMounth);
         driver.findElements(By.xpath("//*[@id=\"__next\"]/div[3]/div[3]/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div/div[2]/div/table/tbody/tr")).get(setCalendar.getRow()).findElements(By.tagName("td")).get(setCalendar.getColumn()).click();
     }
 
