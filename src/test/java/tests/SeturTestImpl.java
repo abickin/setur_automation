@@ -138,7 +138,7 @@ public class SeturTestImpl implements SeturTest, Locators {
         WebElement tableElement = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[3]/div[3]/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div[2]/div/div/div/div/div/div[2]/div[1]/button[2]"));
 
         int mounthValeu = LocalDate.now().getMonthValue();
-        Thread.sleep(2000);
+
         for (int i = 0; i < 6 - mounthValeu; i++) {
             Thread.sleep(1000);
             tableElement.click();
@@ -158,6 +158,7 @@ public class SeturTestImpl implements SeturTest, Locators {
 
                     String dayofMounth = calendarRowElementList.get(column).getText();
                     calendarMap.put(Integer.parseInt(dayofMounth), seturCalendar);
+                    Thread.sleep(1000);
                 }
             }
 
