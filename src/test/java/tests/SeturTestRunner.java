@@ -1,6 +1,9 @@
 package tests;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
+
+import static tests.Locators.VACATION_DATE_BOX;
 
 public class SeturTestRunner {
     SeturTest seturTest = new SeturTest();
@@ -14,7 +17,8 @@ public class SeturTestRunner {
         seturTest.urlControl();
         seturTest.isdefaultTabControl();
         seturTest.readCsvFile("Antalya");
-        seturTest.chooseDate(Mounths.EYLUL, 29);
+        seturTest.clickVacationBox();
+        seturTest.chooseDate(Mounths.EYLUL, 17);
     }
 
 

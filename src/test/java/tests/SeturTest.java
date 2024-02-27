@@ -92,6 +92,10 @@ public class SeturTest {
         return cityToSearch;
     }
 
+    public void clickVacationBox() {
+        driver.findElement(By.xpath(VACATION_DATE_BOX)).click();
+    }
+
     public void chooseDate(Mounths mounth, int dayOfMounth) throws InterruptedException {
 
         if (mounth == null) {
@@ -100,7 +104,7 @@ public class SeturTest {
         }
 
         int monthValueAsInt = Mounths.getMonthOfYear(mounth.getNameOfMonth());
-        driver.findElement(By.xpath(VACATION_DATE_BOX)).click();
+
         WebElement tableElement = driver.findElement(By.xpath("//*[@id=\"__next\"]/div[3]/div[3]/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div[2]/div/div/div/div/div/div[2]/div[1]/button[2]"));
         int currentMonthValue = LocalDate.now().getMonthValue();
 
