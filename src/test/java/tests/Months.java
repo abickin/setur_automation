@@ -1,6 +1,6 @@
 package tests;
 
-public enum Mounths {
+public enum Months {
 
     OCAK("Ocak", 1, 30),
     SUBAT("Şubat", 2, 28),
@@ -21,7 +21,7 @@ public enum Mounths {
     private int mothOfYear;
 
 
-    Mounths(String nameOfMonth, int mouthOfYear, int maxDayOfMonth) {
+    Months(String nameOfMonth, int mouthOfYear, int maxDayOfMonth) {
         this.nameOfMonth = nameOfMonth;
         this.mothOfYear = mouthOfYear;
         this.maxDayOfMonth = maxDayOfMonth;
@@ -29,7 +29,7 @@ public enum Mounths {
 
     public static int getMonthOfYear(String nameOfMonth) {
         int fondDayOfMounth = 0;
-        for (Mounths mounth : Mounths.values()) {
+        for (Months mounth : Months.values()) {
 
             if (nameOfMonth.equalsIgnoreCase(mounth.nameOfMonth)) {
                 fondDayOfMounth = mounth.mothOfYear;

@@ -1,10 +1,7 @@
 package utils;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,13 +10,10 @@ import java.time.format.DateTimeFormatter;
 
 public class ReusubleMethods {
 
-    public static void bekle(int saniye) {
+    public static void waitAsSecond(int second) throws InterruptedException {
 
-        try {
-            Thread.sleep(saniye * 1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Thread.sleep(second * 1000);
+
     }
 
     public static void tumSayfaFotografCek(WebDriver driver, String screenshotIsmi) {   // herkes farkli driver kullanabilecegi icin driver parametre olarak verilmeli.yani kullanılacak driver gonderilmeli chrome,firefox vs
@@ -73,5 +67,14 @@ public class ReusubleMethods {
         }
     }
 
+    public static void clickWithBackgroundColor(WebElement element,WebDriver driver) throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        element.click();
+        js.executeScript("arguments[0].setAttribute('style', 'background-color:yellow')", element);
+        //Thread.sleep(2000);
+
+
+
+    }
 
 }
