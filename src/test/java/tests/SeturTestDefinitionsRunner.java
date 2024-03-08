@@ -10,6 +10,7 @@ public class SeturTestDefinitionsRunner {
 
     @Test
     public void SeturReservationTest() throws InterruptedException {
+
         seturTestDefinitions.initialSetting("Chrome");
         seturTestDefinitions.setOptions();
         seturTestDefinitions.openPage(URL_SETUR);

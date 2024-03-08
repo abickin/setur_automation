@@ -15,11 +15,9 @@ public enum Months {
     KASIM("Kasım", 11, 30),
     ARALIK("Aralık", 12, 31);
 
-
     private int maxDayOfMonth;
     private String nameOfMonth;
     private int mothOfYear;
-
 
     Months(String nameOfMonth, int mouthOfYear, int maxDayOfMonth) {
         this.nameOfMonth = nameOfMonth;
