@@ -21,10 +21,13 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static tests.Locators.*;
-import static utils.ReusubleMethods.*;
+import static utils.ReusubleMethods.clickWithBackgroundColor;
+import static utils.ReusubleMethods.waitAsSecond;
 
 public class SeturTestDefinitions {
     private static String EXPECTED_WORD_IN_URL = "antalya";
+    private static String EXPECTED_CLASS_VALUE = "jmbIRo";
+
     private WebDriver driver;
 
     public void initialSetting(String browserName) {
@@ -63,14 +66,15 @@ public class SeturTestDefinitions {
         Assert.assertEquals(expectedUrl, actualUrl);
     }
 
-    /*public void defaultTabControl() {
-        List<WebElement> seturServicesTabList = driver.findElements(By.xpath(SETUR_SERVICES_TABS)).get(0)
-        List<String> seturServicesTabValueList = new ArrayList<>();
+    public void defaultTabControl() {
+        WebElement seturActiveTab = driver.findElement(By.xpath(SETUR_SERVICES_TABS));
+        String classValue = seturActiveTab.getAttribute("class");
+        boolean result = classValue.contains(EXPECTED_CLASS_VALUE);
+        if (result) {
+            System.out.println("SAYFA ACILISINDA OTEL TAB'I DEFAULT GELMEKTEDIR");
+        }
+    }
 
-        String expectedClassNameAttribute = "jmbIRo";
-        Assert.assertTrue(expectedClassNameAttribute.contains(seturServicesTabList.get(0).getText()));
-
-    }*/
     public void readCsvFile() throws InterruptedException {
 
         CSVReader reader = null;
@@ -85,7 +89,6 @@ public class SeturTestDefinitions {
 
             WebElement chosenCity = driver.findElement(By.xpath(CHOSEN_CITY));
             chosenCity.click();
-            //clickWithBackgroundColor(chosenCity,driver);
 
         } catch (IOException | CsvException e) {
             throw new RuntimeException(e);
@@ -101,6 +104,7 @@ public class SeturTestDefinitions {
         Map<Integer, SeturCalendar> calendarMap = new HashMap<>();
         int chosenMonthRowCount = driver.findElements(By.xpath(CHOSEN_MONTH_ROW)).size();
         waitAsSecond(10);
+
         for (int row = 0; row < chosenMonthRowCount; row++) {
             List<WebElement> calendarRowElementList = driver.findElements(By.xpath(CALENDAR_ROW)).get(row).findElements(By.tagName("td"));
             for (int column = 0; column < 7; column++) {
@@ -120,7 +124,7 @@ public class SeturTestDefinitions {
 
     public void chooseMonth(Months month) throws InterruptedException {
         if (month == null) {
-            System.out.println("AY DEĞERİ BOŞ OLAMAZ");
+            System.out.println("AY DEGERI BOS OLAMAZ");
         }
         int monthValueAsInt = Months.getMonthOfYear(month.getNameOfMonth());
 
@@ -171,7 +175,7 @@ public class SeturTestDefinitions {
         Assert.assertTrue(actualUrl.contains(EXPECTED_WORD_IN_URL));
     }
 
-    public int clickOtherRegionsRandomly() {
+    public int clickOtherRegionsRandomly() throws InterruptedException {
         Random random = new Random();
         List<WebElement> otherRegionList = driver.findElements(By.xpath(OTHER_REGION));
         int randomChosenRegion = random.nextInt(otherRegionList.size());
@@ -179,6 +183,7 @@ public class SeturTestDefinitions {
         String selectedOtherRegionHotelNumberStr = regionSelector.findElement(By.tagName("span")).getText().replaceAll("\\D", "");
         int selectedOtherRegionHotelNumber = Integer.parseInt(selectedOtherRegionHotelNumberStr);
         regionSelector.click();
+        waitAsSecond(2);
         WebElement otherRegionElement = driver.findElement(By.xpath(OTHER_REGION_COLOR));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].setAttribute('style', 'background-color:yellow')", otherRegionElement);
@@ -204,6 +209,10 @@ public class SeturTestDefinitions {
 
     public void compareFilterCountAndResultCount(int resultCount, int filterCount) {
         Assert.assertEquals(resultCount, filterCount);
+    }
+
+    public void closeDriver() {
+    driver.quit();
     }
 }
 

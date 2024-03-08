@@ -15,7 +15,7 @@ public class SeturTestDefinitionsRunner {
         seturTestDefinitions.openPage(URL_SETUR);
         seturTestDefinitions.closePopupsAndCookies();
         seturTestDefinitions.urlControl();
-        //seturTestDefinitions.defaultTabControl();
+        seturTestDefinitions.defaultTabControl();
         seturTestDefinitions.readCsvFile();
         seturTestDefinitions.clickVacationBox();
         seturTestDefinitions.chooseMonth(Months.NISAN);
@@ -32,5 +32,6 @@ public class SeturTestDefinitionsRunner {
             int resultCount = seturTestDefinitions.getResultCount();
             seturTestDefinitions.compareFilterCountAndResultCount(resultCount, filterCount);
         }
+        seturTestDefinitions.closeDriver();
     }
 }

@@ -10,7 +10,7 @@ public interface Locators {
     String SEARCH_BUTTON = "//button[@type='button']";
     String OTHER_REGION = "//*[@class='sc-2569635-2 PSzMH']//*[@data-testid='checkbox']";
     String OTHER_REGION_COLOR = "//*[@class='sc-6a38e3d8-2 nBURe']";
-    String SETUR_SERVICES_TABS = "//div[@class='sc-25740042-0 gisrlP']/*";
+    String SETUR_SERVICES_TABS = "//*[@id='__next']/div[3]/div[3]/div[1]/div[2]/div/div/div/div[1]/div/button[1]";
     String PERSON_AND_ROOM = "//div[@class='sc-b2c3f6ee-16 cAZglB']";
     String ADULT_INCREASE_BUTTON = "(//button[@data-testid='increment-button'])[1]";
     String ADLUT_PERSON_COUNT = "(//span[@data-testid='count-label'])[1]";
